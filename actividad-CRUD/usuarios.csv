@@ -1,0 +1,4 @@
+id_usuario,nombre,edad,curso
+18,Alejandro,30,"PHP Avanzado"
+19,Javier,22,"PHP avanzado"
+20,"Javier ",30,"PHP basico"

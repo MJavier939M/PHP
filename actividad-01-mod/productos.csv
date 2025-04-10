@@ -1,0 +1,6 @@
+id_producto,nombre,categoria,precio,stock,imagen
+1,"Laptop HP",Electrónica,750,10,https://www.hp.com/es-es/shop/Html/Merch/Images/c06593122_1750x1285.jpg
+2,"Teclado RGB",Accesorios,50,25,https://www.nerdytec.com/wp-content/uploads/2023/10/01_nerdytec_CYKEY_ISO_RGB.jpg
+3,"Monitor 24",Electrónica,200,15,https://www.lg.com/content/dam/channel/wcms/es/images/monitores/24gn60r-b_beu_eees_es_c/gallery/large01.jpg
+4,"Ratón Gamer",Accesorios,30,40,https://cdn.grupoelcorteingles.es/SGFM/dctm/MEDIA03/202307/19/00128635708523____7__1200x1200.jpg
+5,"Silla Ergonómica",Muebles,180,5,https://mobiocasion.com/40824-thickbox_default/silla-ergonomica-de-oficina-new-ergostone-de-euromof.jpg

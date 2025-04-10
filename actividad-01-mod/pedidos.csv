@@ -1,0 +1,6 @@
+id_pedido,id_producto,cliente,cantidad,fecha
+1,2,"Juan Pérez",1,2025-03-10
+2,1,"María Gómez",2,2025-03-11
+3,5,"Carlos López",1,2025-03-12
+4,3,"Ana Ramírez",2,2025-03-13
+5,4,"Pedro Torres",3,2025-03-14
