@@ -16,11 +16,20 @@ $productos = [
 if (isset($_POST["cantidad"])) {
     $id = $_POST["id"];
     $cantidad = $_POST["cantidad"];
+    $datos = [];
+
+    foreach ($productos as $producto) {
+        if ($producto['id'] == $id) {
+            $datos = $producto;
+            $datos["cantidad"] = $cantidad;
+        }
+    }
 
     if (isset($_SESSION["carrito"][$id])) {
-        $_SESSION["carrito"][$id] += $cantidad;
+        $_SESSION["carrito"][$id]["cantidad"] += $cantidad;
     }else {
-        $_SESSION["carrito"][$id] = $cantidad;
+        $_SESSION["carrito"][$id] = $datos;
+    
     }
     
 }
@@ -33,6 +42,8 @@ if (isset($_POST["cantidad"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+
 </head>
 <body>
         <?php foreach ($productos as $producto) {?>

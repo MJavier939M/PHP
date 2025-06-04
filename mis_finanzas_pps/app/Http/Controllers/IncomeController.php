@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Income;
 use Illuminate\Http\Request;
+use PhpParser\Node\Stmt\TryCatch;
 
 class IncomeController extends Controller
 {
@@ -13,15 +15,24 @@ class IncomeController extends Controller
     {
         //
         //Carga de todos los elementos que vamos a mostrar
-        $incomes = [
-            [3300, '12/10/2024'],
-            [2300, '15/11/2024'],
-            [1300, '15/01/2025'],
-        ];
+        $income = Income::all();
+
+        $tableData = ["cabecera" => ["id","fecha","categoria","cantidad"],"data" => []];
         
+        foreach ($income as $incomes) {
+            $tableData["data"][] = [
+                $incomes->id,
+                $incomes->fecha,
+                $incomes->categoria,
+                $incomes->cantidad
+            ]; 
+        }
+        
+        $nombreEnlace = ["enlace" => "https://www.google.com/","nombre" => "BOTON"];
         $title='Ingresos de USUARIO';
         
-        return view('income.index',['incomes' => $incomes,'title' => $title]);
+        
+        return view('income.index',['tableData' => $tableData,'title' => $title,"nombreEnlace" => $nombreEnlace]);
     }
 
     /**
@@ -29,7 +40,8 @@ class IncomeController extends Controller
      */
     public function create()
     {
-        //
+        return view('income.create');
+
     }
 
     /**
@@ -37,7 +49,15 @@ class IncomeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       $request->validate(["fecha" => "required|date","cantidad" => "required|numeric","categoria" => "required|string"]); 
+       
+       try {
+        Income::create($request->all());
+        return redirect()->route('incomes.index')->with("success","Ingreso creado correctamente");
+       } catch (\Throwable $th) {
+        return redirect()->route('incomes.create')->with("error","Error al crear el ingreso");
+       } 
+
     }
 
     /**
@@ -53,7 +73,8 @@ class IncomeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        
+        return view('income.edit')->with("income",Income::find($id));
     }
 
     /**
@@ -61,7 +82,13 @@ class IncomeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $dato = Income::find($id);
+
+        $request->validate(["fecha" => "required|date","cantidad" => "required|numeric","categoria" => "required|string"]); 
+
+        $dato->update($request->all());
+        return redirect()->route('incomes.index')->with("success","Ingreso actualizado correctamente");
+
     }
 
     /**
@@ -69,6 +96,10 @@ class IncomeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $dato = Income::find($id);
+
+        $dato->delete();
+        return redirect()->route('incomes.index')->with("success","Ingreso borrado correctamente");
+
     }
 }

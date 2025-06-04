@@ -109,13 +109,7 @@ function añadir() {
     // Generar un nuevo ID basado en el último ID existente
     $nuevoId = count($datosCSV) > 0 ? end($datosCSV)['id_usuario'] + 1 : 1;
 
-    // Crear un nuevo registro
-    $nuevoRegistro = [
-        'id_usuario' => $nuevoId,
-        'nombre' => $nombre,
-        'edad' => $edad,
-        'curso' => $curso
-    ];
+    $nuevoRegistro = [$nuevoId,$nombre,$edad,$curso];
 
     // Añadir el nuevo registro al archivo CSV
     $openArchivo = fopen("usuarios.csv", "a");

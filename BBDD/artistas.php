@@ -2,16 +2,11 @@
 
 require_once 'conexion.php';
 
-$result = $conexion->query("SELECT * FROM artistas");
+$result = $conn->prepare("SELECT * FROM artistas");
+$result->execute();
 
-$artistas = [];
+$artistas = $result->fetchAll(PDO::FETCH_ASSOC);
 
-while ($fila = $result -> fetch_assoc()) {
-    $artistas[] = $fila;
-}
-
-
-var_dump($artistas);
 ?>
 
 <!DOCTYPE html>

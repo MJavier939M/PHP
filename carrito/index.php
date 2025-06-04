@@ -3,9 +3,9 @@
 session_start();
 
 $usuarios = [
-    1 => ["nombre" => "Javier", "contraseña" => "1234"],
-    2 => ["nombre" => "Jose", "contraseña" => "4321"],
-    3 => ["nombre" => "Alejandro", "contraseña" => "1254"],
+    ["nombre" => "Javier", "contraseña" => "1234"],
+    ["nombre" => "Jose", "contraseña" => "4321"],
+    ["nombre" => "Alejandro", "contraseña" => "1254"],
 ];
 
 if (isset($_POST["nombre"]) && isset($_POST["contraseña"])) {
@@ -32,6 +32,8 @@ if (isset($_POST["nombre"]) && isset($_POST["contraseña"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+
 </head>
 <body>
     <form method="post">

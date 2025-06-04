@@ -1,10 +1,15 @@
-<!DOCTYPE html>
+<?php
+
+
+?><!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad 1</title>
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+
 </head>
 
 <body>
@@ -23,9 +28,9 @@
     //* Después de llamar a la función correspondiente, redirigir al usuario a index.php 
     -->
 
-    <form>
-        <button type="submit" post="botones.php" name="borrar">Borrar Registros</button>
-        <button type="submit" post="botones.php" name="rellenar">Rellenar Registros</button>
+    <form action="botones.php" method="post">
+        <button type="submit"  name="borrar">Borrar Registros</button>
+        <button type="submit"  name="rellenar">Rellenar Registros</button>
     </form>
 
 

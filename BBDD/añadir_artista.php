@@ -8,9 +8,9 @@ if (isset($_POST["añadir"]) && !empty($_POST["añadir"])) {
     $apellido = $_POST["apellido"];
     $estilo = $_POST["estilo"];
 
-    $sql = "INSERT INTO artistas (nombre,apellido,estilo) VALUES ('$nombre','$apellido','$estilo')";
-
-    if ($conexion -> query($sql) === true) {
+    $sql = "INSERT INTO artistas (nombre,apellido,estilo) VALUES (':nombre',':apellido',':estilo')";
+    
+    if ($conexion -> prepare($sql) === true) {
         header("location: artistas.php");
     }
 }

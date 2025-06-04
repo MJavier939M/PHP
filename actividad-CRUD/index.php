@@ -49,20 +49,24 @@ $datos = obtenerDatosCSV("usuarios.csv");
                     <th>Nombre</th>
                     <th>Edad</th>
                     <th>Curso</th>
-                    <th>&nbsp;</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php foreach ($datos as $dato) {
-                    echo "<tr>";
-                    echo "<td><input type='checkbox' name='registro[]' value='{$dato['id_usuario']}'></td>";
-                    echo "<td>{$dato['nombre']}</td>";
-                    echo "<td>{$dato['edad']}</td>";
-                    echo "<td>{$dato['curso']}</td>";
-                    echo "<td><a href='visualizar.php?id_usuario={$dato['id_usuario']}'>Ver</a></td>";
-                    echo "</tr>";
+               <?php
+                $table = "";
+                foreach ($datos as $dato) {
+                    $table .= "<tr>
+                                    <td><input type='checkbox' name='registro[]' value='".$dato['id_usuario']."'></td>
+                                    <td>".$dato['nombre']."</td>
+                                    <td>".$dato['edad']."</td>
+                                    <td>".$dato['curso']."</td>
+                                    <td><a href='visualizar.php?id_usuario=".$dato['id_usuario']."'>Ver</a></td>
+                                </tr>";
                 }
+                echo $table;
                 ?>
+                
             </tbody>
         </table>
     </form>

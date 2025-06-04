@@ -1,0 +1,21 @@
+ID,Origen,Destino,Precio,Fecha de Vuelo,Aerolínea
+1,Madrid,París,79.99,2025-03-15,Air Europa
+2,Barcelona,Londres,89.5,2025-03-16,Ryanair
+3,Sevilla,Roma,99.99,2025-03-17,Iberia
+4,Valencia,Berlín,120.0,2025-03-18,Lufthansa
+5,Bilbao,Ámsterdam,110.75,2025-03-19,KLM
+6,Málaga,Lisboa,95.4,2025-03-20,TAP Air Portugal
+7,Alicante,Bruselas,85.0,2025-03-21,Brussels Airlines
+8,Gran Canaria,Viena,130.25,2025-03-22,Austrian Airlines
+9,Tenerife,Praga,140.0,2025-03-23,Czech Airlines
+10,Santander,Dublín,125.6,2025-03-24,Aer Lingus
+11,Zaragoza,Estocolmo,90.3,2025-03-25,SAS
+12,Oviedo,Copenhague,105.2,2025-03-26,Norwegian
+13,Girona,Atenas,98.75,2025-03-27,Aegean Airlines
+14,Valladolid,Budapest,112.45,2025-03-28,Wizz Air
+15,Murcia,Oslo,88.99,2025-03-29,Norwegian
+16,La Coruña,Helsinki,92.5,2025-03-30,Finnair
+17,Salamanca,Moscú,145.9,2025-03-31,Aeroflot
+18,Cádiz,Varsovia,102.3,2025-04-01,LOT Polish Airlines
+19,León,Zúrich,135.0,2025-04-02,Swiss Air
+20,Burgos,Luxemburgo,128.6,2025-04-03,Luxair

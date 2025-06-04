@@ -24,6 +24,7 @@ function obtenerDatosCSV($archivo)
 
 
 // Obtener los datos de los archivos CSV
+
 $pedidos = obtenerDatosCSV("pedidos.csv");
 $productos = obtenerDatosCSV("productos.csv");
 
@@ -43,29 +44,40 @@ foreach ($pedidos as $pedido) { // Recorremos los pedidos (porque es la tabla pr
 // Mostramos productos asociados en una tabla
 
 if ($productosAsociados) { // Miramos si hay productos asociados
-    echo "<table border='1'>";
 
-    // Generar encabezados dinámicamente
-    echo "<tr>";
-    foreach ($productosAsociados[0] as $key => $value) { // Recorremos el primer elemento de $productosAsociados para obtener las cabeceras
-        echo "<th>" . $key . "</th>"; // Solo usamos las keys de los elementos que son las cabeceras
+    $table = '<table>
+    <thead>
+        <th>id_pedido</th>
+        <th>id_producto</th>
+        <th>cliente</th>
+        <th>cantidad</th>
+        <th>fecha</th>
+        <th>nombre</th>
+        <th>categoria</th>
+        <th>precio</th>
+        <th>stock</th>
+        <th>imagen</th>
+    </thead>
+    <tbody>';
+    
+    foreach ($productosAsociados as $productoAsociado) {
+        $table .= '<tr>
+            <td>'.$productoAsociado['id_pedido'].'</td>
+            <td>'.$productoAsociado['id_producto'].'</td>
+            <td>'.$productoAsociado['cliente'].'</td>
+            <td>'.$productoAsociado['cantidad'].'</td>
+            <td>'.$productoAsociado['fecha'].'</td>
+            <td>'.$productoAsociado['nombre'].'</td>
+            <td>'.$productoAsociado['categoria'].'</td>
+            <td>'.$productoAsociado['precio'].'</td>
+            <td>'.$productoAsociado['stock'].'</td>
+            <td><img src="'.$productoAsociado['imagen'].'" width="100px" height="100px"></td>
+        </tr>';
     }
-    echo "</tr>";
+    $table .= '</tbody> </table>';
 
-    // Generar filas de la tabla
-    foreach ($productosAsociados as $productoAsociado) { // Recorremos los productos asociados
-        echo "<tr>";
-        foreach ($productoAsociado as $key => $value) { // Agregamos $key para identificar la clave
-            if ($key === "imagen") { // Si la clave es "imagen"
-                echo "<td><img src='" . $value . "' alt='Imagen del producto' width='100'></td>";
-            } else {
-                echo "<td>" . $value . "</td>"; // Mostramos el valor normal
-            }
-        }
-        echo "</tr>"; // Cerramos la fila después de recorrer todos los valores
-    }
+    echo $table;
 
-    echo "</table>";
 } else {
     echo "<p>No hay datos</p>";
 }

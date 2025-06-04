@@ -5,9 +5,11 @@ require_once 'conexion.php';
 if (isset($_GET["id"])) {
     $id = intval($_GET["id"]);
 
-    $sql = "SELECT * FROM artistas WHERE id = $id";
-    $result = $conexion -> query($sql);
-    $artista = $result -> fetch_assoc();
+    $sql = "SELECT * FROM artistas WHERE id = :id";
+    $result = $conn -> prepare($sql);
+    $result->bindParam("id",$id,PDO::PARAM_INT);
+    $result -> execute();
+    $artistas = $result->fetchAll(PDO::FETCH_ASSOC);
 
 }
 
@@ -17,9 +19,21 @@ if (isset($_POST["actualizar"])) {
     $estilo = $_POST["estilo"];    
     $id = $_GET["id"];
 
-    $sql = "UPDATE artistas SET nombre = '$nombre', apellido = '$apellido', estilo = '$estilo' WHERE id = $id";
-
-    if ($conexion -> query($sql) === true) {
+    $sql = "UPDATE artistas SET nombre = ':nombre', apellido = ':apellido', estilo = ':estilo' WHERE id = :id";
+    $result = $conn -> prepare($sql);
+    
+    $result->bindParam(":nombre",$nombre,PDO::PARAM_STR);
+    $result->bindParam(":apellido",$apellido,PDO::PARAM_STR);
+    $result->bindParam(":estilo",$estilo,PDO::PARAM_STR);
+    $result->bindParam(":id",$id,PDO::PARAM_INT);
+    
+    // $result->execute([
+    // ':nombre' => $nombre,
+    // ':apellido' => $apellido,
+    // ':estilo' => $estilo,
+    // ':id' => $id]);
+        
+    if ($result->execute() === true) {
         header("location: artistas.php");
     }
 }

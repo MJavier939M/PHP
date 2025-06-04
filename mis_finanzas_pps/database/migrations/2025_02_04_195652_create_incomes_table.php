@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('incomes', function (Blueprint $table) {
             $table->id();
-            $table->double('amount');
+            $table->date('fecha');
+            $table->double('cantidad');
+            $table->string('categoria');
             $table->timestamps();
         });
     }

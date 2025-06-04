@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Actividad 1 - Aleatorio</title>
+        <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
 </head>
 
 <body>
@@ -49,40 +50,61 @@
             }
         }
     }
-    
+
+ 
+
     // Mostrar un producto aleatorio en una tabla
-    if ($productosAsociados) {
-        // Obtener un índice aleatorio
-        $indiceAleatorio = array_rand($productosAsociados);
-        $productoAleatorio = $productosAsociados[$indiceAleatorio]; // Producto aleatorio
+   if ($productosAsociados) { // Miramos si hay productos asociados
+    $indiceAleatorio = array_rand($productosAsociados);
     
-        echo "<table border='1'>";
-    
-        // Generar encabezados dinámicamente
-        echo "<tr>";
-        foreach ($productoAleatorio as $key => $value) {
-            echo "<th>" . $key . "</th>";
-        }
-        echo "</tr>";
-    
-        // Generar fila para el producto aleatorio
-        echo "<tr>";
-        foreach ($productoAleatorio as $key => $value) {
-            if ($key === "imagen") {
-                echo "<td><img src='" . $value . "' alt='Imagen del producto' width='100'></td>";
-            } else {
-                echo "<td>" . $value . "</td>";
-            }
-        }
-        echo "</tr>";
-    
-        echo "</table>";
-    } else {
-        echo "<p>No hay datos</p>";
-    }
+    $table = '<table>
+    <thead>
+        <th>id_pedido</th>
+        <th>id_producto</th>
+        <th>cliente</th>
+        <th>cantidad</th>
+        <th>fecha</th>
+        <th>nombre</th>
+        <th>categoria</th>
+        <th>precio</th>
+        <th>stock</th>
+        <th>imagen</th>
+    </thead>
+    <tbody><tr>';
+
+    // foreach ($productosAsociados[$indiceAleatorio] as $key => $valor) {
+
+    //     if ($key == "imagen") {
+    //         $table .= '<td><img src="'.$valor.'" width="100px" height="100px"></td>';
+    //     }else {
+    //          $table .= '<td>'.$valor.'</td>';
+    //     }
+       
+    // }
+
+     $table .= '
+            <td>'.$productosAsociados[$indiceAleatorio]['id_pedido'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['id_producto'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['cliente'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['cantidad'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['fecha'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['nombre'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['categoria'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['precio'].'</td>
+            <td>'.$productosAsociados[$indiceAleatorio]['stock'].'</td>
+            <td><img src="'.$productosAsociados[$indiceAleatorio]['imagen'].'" width="100px" height="100px"></td>
+        ';
+
+    $table .= '</tr></tbody></table>';
+
+    echo $table;
+
+} else {
+    echo "<p>No hay datos</p>";
+}
 
     ?>
-
+<a href="index.php">Volver</a>
 </body>
 
 </html>

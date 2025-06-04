@@ -13,14 +13,24 @@ $productos = [
 if (isset($_POST["cantidad"])) {
     $id = $_POST["id"];
     $cantidad = $_POST["cantidad"];
+    $datos = [];
+
+    foreach ($productos as $producto) {
+        if ($producto['id'] == $id) {
+            $datos = $producto;
+            $datos["cantidad"] = $cantidad;
+        }
+    }
 
     if (isset($_SESSION["carrito"][$id])) {
         if ($cantidad == 0) {
             unset($_SESSION["carrito"][$id]);
         }else {
-            $_SESSION["carrito"][$id] = $cantidad;
+            $_SESSION["carrito"][$id]["cantidad"] = $cantidad;
         }
+        
     }
+    
 }
 
 ?>
@@ -32,24 +42,23 @@ if (isset($_POST["cantidad"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/simpledotcss/simple.min.css">
+
 </head>
 
 <body>
     <?php
-    foreach ($_SESSION["carrito"] as $id => $cantidad) {
-        foreach ($productos as $producto) {
-            if ($producto["id"] == $id) { ?>
-                <form method="post">
-                    <input type="number" name="cantidad" min="0" value="<?php echo $cantidad?>">
-                    <?php echo "{$producto['nombre']} - {$producto['precio']}€" ?>;
-                    <button type="submit">Editar</button>
-                    <input type="hidden" name="id" value="<?php echo $producto['id']?>">
-                </form>
-    <?php
-            }
-        }
-        echo " - $cantidad unidades<br>";
+    $form = "";
+
+    foreach ($_SESSION["carrito"] as $id => $datos) {
+        $form .=   "<form method='post'>
+                    <p>".$datos['nombre']." - ".$datos['precio']."€</p>
+                        <input type='number' name='cantidad' min='0' value='".$datos['cantidad']."'>
+                        <button type='submit'>Editar</button>
+                        <input type='hidden' name='id' value='".$id."'>
+                    </form>";
     }
+    echo $form;
     ?>
     <a href="productos.php">Volver a productos</a>
     <a href="logout.php">Cerrar sesión</a>

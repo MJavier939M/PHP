@@ -22,12 +22,8 @@ function borrarDatos()
     //* y escribe las cabeceras en el archivo (esto borra los registros)
 
         foreach ($archivos as $archivo) {
-            $openArchivo = fopen($archivo, "r");
-            $cabeceras = fgetcsv($openArchivo);
-            fclose($openArchivo);
-
             $openArchivo = fopen($archivo, "w");
-            fputcsv($openArchivo, $cabeceras);
+            fputcsv($openArchivo, []);
             fclose($openArchivo);
         }
 
